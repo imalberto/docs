@@ -1,0 +1,303 @@
+{
+    "project": {
+        "name": "The Widget API",
+        "description": "The widget api in more detailed description",
+        "version": "1.0.0",
+        "url": "http://github.com/imalberto/docs/yuidoc"
+    },
+    "files": {
+        "lib/cup.js": {
+            "name": "lib/cup.js",
+            "modules": {
+                "widget": 1,
+                "cup": 1
+            },
+            "classes": {
+                "Cup": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/lamp.js": {
+            "name": "lib/lamp.js",
+            "modules": {
+                "gadget": 1
+            },
+            "classes": {
+                "gadget": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/widget.js": {
+            "name": "lib/widget.js",
+            "modules": {},
+            "classes": {
+                "widget": 1
+            },
+            "fors": {
+                "widget": 1
+            },
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "widget": {
+            "name": "widget",
+            "submodules": {
+                "cup": 1,
+                "gadget": 1
+            },
+            "classes": {
+                "Cup": 1,
+                "gadget": 1,
+                "widget": 1
+            },
+            "fors": {
+                "widget": 1
+            },
+            "namespaces": {},
+            "file": "lib/widget.js",
+            "line": 40,
+            "description": "This is the \"Cup\" module.\nThe \"main\" tag tells yuidoc that this submodule should be grouped under the\nmain module \"widget\".",
+            "tag": "main",
+            "itemtype": "main"
+        },
+        "cup": {
+            "name": "cup",
+            "submodules": {},
+            "classes": {
+                "Cup": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "widget",
+            "namespace": "",
+            "file": "lib/cup.js",
+            "line": 17,
+            "description": "This is the \"Cup\" module.\nThe \"main\" tag tells yuidoc that this submodule should be grouped under the\nmain module \"widget\".",
+            "tag": "main",
+            "itemtype": "main"
+        },
+        "gadget": {
+            "name": "gadget",
+            "submodules": {},
+            "classes": {
+                "gadget": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "widget",
+            "namespace": "",
+            "file": "lib/lamp.js",
+            "line": 16,
+            "description": "The \"main\" tag tells yuidoc that this submodule should be grouped under the\nmain module \"widget\".",
+            "tag": "main",
+            "itemtype": "main"
+        }
+    },
+    "classes": {
+        "Cup": {
+            "name": "Cup",
+            "shortname": "Cup",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "widget",
+            "submodule": "cup",
+            "namespace": "",
+            "file": "lib/cup.js",
+            "line": 17,
+            "description": "This is the constructor.",
+            "is_constructor": 1
+        },
+        "gadget": {
+            "name": "gadget",
+            "shortname": "gadget",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [
+                "widget"
+            ],
+            "module": "widget",
+            "submodule": "gadget",
+            "namespace": "",
+            "file": "lib/lamp.js",
+            "line": 16,
+            "description": "Gadget is a class.\n\nThe \"extensionfor\" says that this class \"gadget\" is an extension object\ndesigned for optionally mixed into \"widget\".\n\n\"extensionfor\" is the almost inverse of \"uses\". The differences is that\n\"this class _always_ has 'used' class mixed into its prototype\", while\n\"extensionfor\" says that this class _can be mixed_ into the 'extensionfor'\nclass, but it is not done by default.",
+            "static": 1
+        },
+        "widget": {
+            "name": "widget",
+            "shortname": "widget",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "widget",
+            "namespace": "",
+            "file": "lib/widget.js",
+            "line": 40,
+            "description": "Here, a class is generally an object with a constructor function. Typically,\none would use a \"class\" to group methods, properties, attributes, and\nevents. \n\nUsually there will be at least one class for each module in the source tree.\nThe \"class\" block should reside above the constructor function, or above\nall the methods, properties, attributes and events.\n\nA \"class\" should always be paired with either a \"constructor\" or \"static\".",
+            "static": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "lib/cup.js",
+            "line": 27,
+            "description": "Some description here for the load method.\n\nUsage:\n\n    var cup = require('Cup');\n    cup.load();",
+            "itemtype": "method",
+            "name": "load",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Cup",
+            "module": "widget",
+            "submodule": "cup"
+        },
+        {
+            "file": "lib/lamp.js",
+            "line": 34,
+            "description": "Example usage:\n\n    var gadget = require('./gadget');\n    gadget.load('A', 'B', 'C');",
+            "itemtype": "method",
+            "name": "load",
+            "access": "protected",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "list of name arguments",
+                    "type": "Object",
+                    "multiple": true
+                }
+            ],
+            "return": {
+                "description": "some object",
+                "type": "Object"
+            },
+            "class": "gadget",
+            "module": "widget",
+            "submodule": "gadget"
+        },
+        {
+            "file": "lib/widget.js",
+            "line": 17,
+            "description": "Use the \"event\" to describe the event details.\n\nThe \"param\" here describes the properties hanging off the event object.",
+            "itemtype": "event",
+            "name": "error",
+            "params": [
+                {
+                    "name": "msg",
+                    "description": "a description for the emitted event",
+                    "type": "String"
+                }
+            ],
+            "class": "widget",
+            "module": "widget"
+        },
+        {
+            "file": "lib/widget.js",
+            "line": 28,
+            "description": "The \"attribute\" tag is YUI specific, and affects how attributes are\ndeclared in widgets.",
+            "itemtype": "attribute",
+            "name": "rendered",
+            "readonly": "",
+            "default": "false",
+            "type": "Boolean",
+            "class": "widget",
+            "module": "widget"
+        },
+        {
+            "file": "lib/widget.js",
+            "line": 56,
+            "itemtype": "property",
+            "name": "location",
+            "type": "String|mixed|any",
+            "default": "\"http://www.yahoo.com\"",
+            "class": "widget",
+            "module": "widget"
+        },
+        {
+            "file": "lib/widget.js",
+            "line": 63,
+            "description": "Marking this attribute | property as optional",
+            "itemtype": "property",
+            "name": "readable",
+            "type": "Boolean",
+            "final": 1,
+            "optional": 1,
+            "class": "widget",
+            "module": "widget"
+        },
+        {
+            "file": "lib/widget.js",
+            "line": 73,
+            "itemtype": "method",
+            "name": "admin",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "default",
+                    "description": "tells that the `default` argument is optional",
+                    "type": "Boolean",
+                    "optional": true
+                }
+            ],
+            "class": "widget",
+            "module": "widget"
+        },
+        {
+            "file": "lib/widget.js",
+            "line": 81,
+            "description": "The \"for\" here says that this method applies to the class \"widget\". There could\nbe multiple classes defined in a module, or a class could have an \"inner\" class.\n\"for\" is how you would specific which class this method belongs to. In this\nexample, \"for\" is redundant because there is only one class.",
+            "itemtype": "method",
+            "name": "help",
+            "params": [
+                {
+                    "name": "argOne",
+                    "description": "this is an optional argument",
+                    "type": "Boolean",
+                    "optional": true
+                },
+                {
+                    "name": "argTwo",
+                    "description": "the default value of this argument is false",
+                    "type": "Boolean",
+                    "optional": true,
+                    "optdefault": "false"
+                },
+                {
+                    "name": "name",
+                    "description": "list of names supplied to the function as arguments",
+                    "type": "String",
+                    "multiple": true
+                }
+            ],
+            "class": "widget",
+            "module": "widget"
+        },
+        {
+            "file": "lib/widget.js",
+            "line": 96,
+            "itemtype": "method",
+            "name": "version",
+            "since": "1.2.0",
+            "deprecated": true,
+            "class": "widget",
+            "module": "widget"
+        }
+    ],
+    "warnings": []
+}

@@ -1,0 +1,30 @@
+{
+ "name": "yuidocs",
+ "description": "",
+ "author": { "name": "Nobody", "email": "imalberto@gmail.com" },
+ "version": "0.1.0",
+ "keywords": [ "" ],
+ "maintainers": [ "" ],
+ "contributors": [
+ ],
+ "licenses": [ "MIT" ],
+ "yahoo": {
+   "mojito": {
+     "version": "0.4.7",
+     "type": "bundle | mojit",
+     "location": "."
+   }
+ },
+ "repositories": {
+   "type": "git",
+   "url": "http://github.com/imalberto/docs/yuidocs.git"
+ },
+ "scripts": {
+   "docs": "yuidoc --lint . && yuidoc .",
+   "doc": "yuidoc --config ./yuidoc.json --lint . && yuidoc --config ./yuidoc.json .",
+   "serve": "yuidoc --server 5000 ."
+ },
+ "devDependencies": {
+   "yuidocjs": "0.3.44"
+  }
+}

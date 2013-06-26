@@ -1,0 +1,14 @@
+{
+  "name": "The Widget API",
+  "description": "The widget api in more detailed description",
+  "version": "1.0.0",
+  "url": "http://github.com/imalberto/docs/yuidoc",
+  "options": {
+    "exclude": "scripts",
+    "linkNatives": true,
+    "outdir": "./apidocs",
+    "paths": [
+      "*/js"
+    ]
+  }
+}
