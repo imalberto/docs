@@ -1,8 +1,9 @@
 #!/bin/zsh -f
 
 
-	# Where do you want OmniFocus to be installed to?
-INSTALL_TO="/Applications/OmniFocus.app"
+# Where do you want OmniFocus to be installed to?
+# INSTALL_TO="/Applications/OmniFocus.app"
+INSTALL_TO=~/Desktop/Apps\ \(Trial\)/OmniFocus.app
 
 
 
@@ -25,10 +26,10 @@ LOG="$HOME/Library/Logs/$NAME.log"
 
 NOTIFY='yes'
 
-	# 'msg' =
-	# if terminal-notifier is installed, use that
-	# if growlnotify is installed AND growl is running, use that
-	# otherwise 'msg' is mostly just 'echo' with the timestamp that also goes to $LOG
+# 'msg' =
+# if terminal-notifier is installed, use that
+# if growlnotify is installed AND growl is running, use that
+# otherwise 'msg' is mostly just 'echo' with the timestamp that also goes to $LOG
 
 if (( $+commands[terminal-notifier] ))
 then
@@ -52,7 +53,7 @@ then
 
 		if [ "$NOTIFY" = "yes" ]
 		then
-				# we only run growlnotify if Growl.app is already running
+			# we only run growlnotify if Growl.app is already running
 			pgrep -xq Growl && \
 				growlnotify  \
 					--appIcon "OmniFocus"  \
@@ -74,29 +75,29 @@ die ()
 }
 
 
-	# get the most recent build number
+# get the most recent build number
 MOST_RECENT=`curl -sfL 'http://omnistaging.omnigroup.com/omnifocus-2/' | tr '"|>|<' '\012' | egrep '\.dmg' | head -1 | sed 's#-Test.dmg##g; s#.*-r##g'`
 
-	# make sure we got _something_ at least
+# make sure we got _something_ at least
 if [ "$MOST_RECENT" = "" ]
 then
 	die "Unable to determine most recent version (MOST_RECENT is empty)"
 	exit 1
 fi
 
-	# if we find an installed version, check to see if we are up to date
+# if we find an installed version, check to see if we are up to date
 if [ -e "$INSTALL_TO" ]
 then
-		# get the currently installed version
+	# get the currently installed version
 	INSTALLED=`defaults read "$INSTALL_TO/Contents/Info.plist" CFBundleVersion 2>/dev/null | cut -d . -f 3`
 
-		# if the installed version is greater than or equal to the most recent version
-		# then we are up to date
+	# if the installed version is greater than or equal to the most recent version
+	# then we are up to date
 	if [[ "$INSTALLED" -ge "$MOST_RECENT" ]]
 	then
-				# don't show a visual indicator when we ARE up to date.
-				# that's just distracting for no reason
-				# just log it
+			# don't show a visual indicator when we ARE up to date.
+			# that's just distracting for no reason
+			# just log it
 			NOTIFY='no'
 			msg "OmniFocus is up to date"
 			exit 0
@@ -121,7 +122,7 @@ then
 fi
 
 
-	# Mount the DMG without showing it
+# Mount the DMG without showing it
 MNTPNT=$(echo -n "Y" | hdid -nobrowse -plist "$FILENAME" 2>/dev/null | fgrep -A 1 '<key>mount-point</key>' | tail -1 | sed 's#</string>.*##g ; s#.*<string>##g')
 
 
@@ -134,58 +135,58 @@ fi
 
 LAUNCH=no
 
-	# If the app is running, ask it, nicely, to quit
+# If the app is running, ask it, nicely, to quit
 pgrep -x OmniFocus && LAUNCH=yes && osascript -e 'tell application "OmniFocus" to quit' && sleep 5
 
-	# if it is still running, we can't keep going
+# if it is still running, we can't keep going
 pgrep -x OmniFocus && die "OmniFocus did not quit"
 
-	# is there a version already installed?
+# is there a version already installed?
 if [ -e "${INSTALL_TO}" ]
 then
 		# if yes, move it to the trash
 		mv -vf "${INSTALL_TO}" "$HOME/.Trash/OmniFocus-$INSTALLED.app"
 fi
 
-	# if there is still something where we want to install this file
-	# then we can't continue
+# if there is still something where we want to install this file
+# then we can't continue
 if [ -e "${INSTALL_TO}" ]
 then
 		die "Could not remove existing ${INSTALL_TO}"
 		exit 1
 fi
 
-	# copy the app to wherever it is supposed to be installed
+# copy the app to wherever it is supposed to be installed
 ditto -v "$MNTPNT/OmniFocus.app" "${INSTALL_TO}" || die "Installation of $MNTPNT/OmniFocus.app failed"
 
-	# unmount the DMG
+# unmount the DMG
 diskutil unmount "$MNTPNT"
 
-	# Remove the "do you really wanna open this?" warning
+# Remove the "do you really wanna open this?" warning
 xattr -d com.apple.quarantine "$INSTALL_TO"
 
 if [ "$LAUNCH" = "no" -a "$INSTALLED" != "" ]
 then
-			# If this is the first time the app is being installed, launch it
-			# if we do not need to launch the app
-			# because it wasn't running when we started this
-			# then just note that the update was successful
+		# If this is the first time the app is being installed, launch it
+		# if we do not need to launch the app
+		# because it wasn't running when we started this
+		# then just note that the update was successful
 		msg "Upgraded OmniFocus to version $MOST_RECENT"
 		exit 0
 fi
 
 if [ "$INSTALLED" = "" ]
 then
-		# if this is the first time the app has been installed, run it in the foreground
+	# if this is the first time the app has been installed, run it in the foreground
 	open -b com.omnigroup.OmniFocus2
 
 else
-		# if we are just re-launching it, do that in the background
+	# if we are just re-launching it, do that in the background
 
 	open --hide -b com.omnigroup.OmniFocus2
 fi
 
-	# Move the DMG to the trash
+# Move the DMG to the trash
 mv -f "$FILENAME" "$HOME/.Trash/"
 
 exit
